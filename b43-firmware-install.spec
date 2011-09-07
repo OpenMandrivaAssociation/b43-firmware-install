@@ -1,0 +1,47 @@
+%define name    b43-firmware-install
+%define version 0.1
+%define release %mkrel 1
+
+Name:           %{name}
+Summary:        Package that installs proprietary firmware for Broadcom 43xx chips
+Version:        %{version}
+Release:        %{release}
+Source:         %name-%version.tar.bz2
+License:        GPLv3
+Group:          System/Configuration/Networking
+URL:            https://github.com/mikhirev/b43-firmware-install
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
+BuildArch:      noarch
+Requires:       b43-fwcutter >= 015
+
+%description
+This package contains script, that automatically downloads precompiled
+proprietary broadcom-wl driver and extracts firmware from it using b43-fwcutter.
+
+There are no any proprietary components in package itself. Driver will be
+downloaded after ihnstallation, so you need working Internet connection. You
+can also install firmware later by running b43-firmware-install as root.
+
+
+%prep
+%setup -q
+
+%build
+
+%install
+rm -rf $RPM_BUILD_ROOT
+install -D -m 755 b43-firmware-install $RPM_BUILD_ROOT/usr/sbin/b43-firmware-install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post
+/usr/sbin/b43-firmware-install
+
+%postun
+rm -rf /lib/firmware/b43
+
+%files
+%defattr(-,root,root)
+/usr/sbin/b43-firmware-install
+%doc README
