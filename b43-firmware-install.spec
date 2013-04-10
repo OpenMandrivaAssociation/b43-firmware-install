@@ -16,7 +16,8 @@ Requires:       b43-fwcutter >= 015
 
 %description
 This package contains script, that automatically downloads precompiled
-proprietary broadcom-wl driver and extracts firmware from it using b43-fwcutter.
+proprietary broadcom-wl driver and extracts firmware from it using
+b43-fwcutter.
 
 There are no any proprietary components in package itself. Driver will be
 downloaded after ihnstallation, so you need working Internet connection. You
