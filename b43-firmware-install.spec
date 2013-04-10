@@ -1,16 +1,11 @@
-%define name    b43-firmware-install
-%define version 0.1
-%define release %mkrel 1
-
-Name:           %{name}
+Name:           b43-firmware-install
 Summary:        Package that installs proprietary firmware for Broadcom 43xx chips
-Version:        %{version}
-Release:        %{release}
+Version:        0.1
+Release:        2
 Source:         %name-%version.tar.bz2
 License:        GPLv3
 Group:          System/Configuration/Networking
 URL:            https://github.com/mikhirev/b43-firmware-install
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 BuildArch:      noarch
 Requires:       b43-fwcutter >= 015
 
@@ -30,11 +25,7 @@ can also install firmware later by running b43-firmware-install as root.
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -D -m 755 b43-firmware-install $RPM_BUILD_ROOT/usr/sbin/b43-firmware-install
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+install -D -m 755 b43-firmware-install %{buildroot}/usr/sbin/b43-firmware-install
 
 %post
 /usr/sbin/b43-firmware-install
