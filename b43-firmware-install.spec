@@ -1,7 +1,7 @@
 Name:           b43-firmware-install
 Summary:        Package that installs proprietary firmware for Broadcom 43xx chips
 Version:        0.1
-Release:        2
+Release:        3
 Source:         %name-%version.tar.bz2
 License:        GPLv3
 Group:          System/Configuration/Networking
